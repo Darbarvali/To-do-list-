@@ -1,0 +1,91 @@
+<%- include('partials/header') %>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+
+        <div class="logo_name">Todo list</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li>
+
+      <li>
+       <a href="/list">
+          <i class='bx bx-calendar-exclamation'></i>
+         <span class="links_name">Daily List</span>
+       </a>
+       <span class="tooltip">To-do List</span>
+     </li>
+     <li>
+       <a href="#notice">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">Personal</span>
+       </a>
+       <span class="tooltip">Personal</span>
+     </li>
+
+       <li> <a href="#notice">
+         <i class='bx bx-folder' ></i>
+         <span class="links_name">Work</span>
+       </a>
+       <span class="tooltip">Work</span>
+     </li>
+
+     <li>
+       <a href="/">
+         <i class='bx bx-log-out'></i>
+         <span class="links_name">Logout</span>
+       </a>
+       <span class="tooltip">Logout</span>
+     </li>
+
+
+    </ul>
+  </div>
+  <section class="home-section">
+
+    <div class="box" id="heading">
+<h1> <%= listTitle %> </h1>
+</div>
+
+<div class="box">
+
+
+<%  newListItems.forEach(function(item){ %>
+
+<form action="/delete" method="post">
+  <div class="item">
+    <input type="checkbox" name="checkbox" value="<%=item._id%>" onChange="this.form.submit()">
+    <p><%=item.name%></p>
+  </div>
+  <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+</form>
+<%  }) %>
+
+
+  <form class="item" action="/list" method="post">
+    <input type="text1" name="newItem" placeholder="New Item" autocomplete="off">
+    <button type="submit" class="t" name="list" value="<%= listTitle %>">+</button>
+  </form>
+</div>
+  </section>
+
+  <div class="container" id="notice">
+        <div class="ticker">
+          <div class="title"><h4><strong>Notice</strong></h4></div>
+          <div class="news">
+            <marquee>
+              <p>
+            <strong> Personal tab and work tab are in work, sorry for inconvenence</strong>
+            </p>
+            </marquee>
+          </div>
+        </div>
+      </div>
+
+
+<%- include('partials/footer') %>
